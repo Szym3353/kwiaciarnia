@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Bukiet Róż Red Berlin",
+    "price": 120,
+    "category": "Milosc",
+    "image": "https://www.podkarpackiesady.pl/userdata/public/gfx/27278/Roza-wielkokwiatowa-RED-BERLIN.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Tulipany wiosenne",
+    "price": 50,
+    "category": "Wiosna",
+    "image": "https://cdn.stoklasa.cz/i/product/740_auto/930546_262792_1.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Słonecznik ozdobny",
+    "price": 80,
+    "category": "Lato",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a9/A_sunflower.jpg"
+  }
+]
