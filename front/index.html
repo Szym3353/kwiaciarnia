@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kwiaciarnia Rosa - Katalog</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        padding: 20px;
+      }
+      /* Pasek górny */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 10px 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .koszyk-info {
+        background: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .koszyk-info:hover {
+        background: #0056b3;
+      }
+
+      .katalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        text-align: center;
+      }
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+      .btn-koszyk {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .btn-koszyk:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1 style="margin: 0">Nasze Bukiety</h1>
+      <a href="#" class="koszyk-info">
+        Twój koszyk (<span id="licznik-koszyka">0</span>)
+      </a>
+    </header>
+
+    <div id="katalog" class="katalog-grid">Ładowanie produktów...</div>
+
+    <script>
+      let iloscWKoszyku = 0;
+
+      fetch("http://localhost:3000/api/products")
+        .then((res) => res.json())
+        .then((data) => {
+          const container = document.getElementById("katalog");
+          container.innerHTML = data
+            .map(
+              (p) => `
+                    <div class="card">
+                        <img src="${p.image}" alt="${p.name}">
+                        <h3>${p.name}</h3>
+                        <p><strong>Cena: ${p.price} PLN</strong></p>
+                        <button class="btn-koszyk" onclick="dodajDoKoszyka('${p.name}')">Dodaj do kosza</button>
+                    </div>
+                `
+            )
+            .join("");
+        });
+
+      function dodajDoKoszyka(nazwa) {
+        iloscWKoszyku++;
+        document.getElementById("licznik-koszyka").innerText = iloscWKoszyku;
+        console.log("Dodano do koszyka: " + nazwa);
+      }
+    </script>
+  </body>
+</html>
