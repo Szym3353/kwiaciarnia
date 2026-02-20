@@ -1,6 +1,6 @@
 const express = require("express");
 const fs = require("fs");
-const cors = require("cors"); // Zainstaluj: npm install cors
+const cors = require("cors");
 const app = express();
 
 app.use(cors());
